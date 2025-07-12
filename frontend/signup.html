@@ -1,8 +1,19 @@
-<!-- signup.html -->
-<h2>Create Luna Ai Account</h2>
-<form action="/signup" method="POST">
-  <input type="text" name="name" placeholder="Name" required />
-  <input type="email" name="email" placeholder="Email" required />
-  <input type="password" name="password" placeholder="Password" required />
-  <button type="submit">Sign Up</button>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up | Luna Ai</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="auth-container">
+    <h2>Create Your Luna Ai Account</h2>
+    <form action="/signup" method="POST">
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+  </div>
+</body>
+</html>
