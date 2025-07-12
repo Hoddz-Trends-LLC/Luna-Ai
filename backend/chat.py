@@ -10,7 +10,7 @@ MODEL_URL = "https://api-inference.huggingface.co/models/gpt2"
 @chat_bp.route("/generate", methods=["POST"])
 def generate():
     token = request.headers.get("Authorization").split()[1]
-    jwt.decode(token, "luna_secret_key", algorithms=["HS256"])  # Verify user
+    jwt.decode(token, "luna_secret_key", algorithms=["HS256"])
 
     input_text = request.json.get("input", "")
     headers = {"Authorization": f"Bearer {HF_TOKEN}"}
