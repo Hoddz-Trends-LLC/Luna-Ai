@@ -46,6 +46,18 @@ c.execute("""
     )
 """)
 
+c.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL,
+        is_admin INTEGER DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+""")
+
+
 # Optional: insert default row
 c.execute("INSERT INTO settings (site_name, theme, logo) VALUES ('Luna Ai', 'Dark', '/static/logo.png')")
 
