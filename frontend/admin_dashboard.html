@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel | Luna Ai</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>👨‍🚀 Luna Ai Admin Panel</h2>
+
+  <section>
+    <h3>Site Settings</h3>
+    <form id="settings-form">
+      <input type="text" name="site_name" placeholder="Site Name" />
+      <input type="text" name="theme" placeholder="Theme" />
+      <input type="text" name="logo" placeholder="Logo URL" />
+      <button type="submit">Save Settings</button>
+    </form>
+  </section>
+
+  <section>
+    <h3>Users</h3>
+    <ul id="user-list"></ul>
+  </section>
+
+  <script>
+    async function loadUsers() {
+      const res = await fetch("/admin/users");
+      const users = await res.json();
+      const list = document.getElementById("user-list");
+      list.innerHTML = users.map(u => `<li>${u.name} (${u.email}) <button onclick="deleteUser(${u.id})">Delete</button></li>`).join("");
+    }
+
+    async function deleteUser(id) {
+      await fetch(`/admin/delete_user/${id}`, { method: "POST" });
+      loadUsers();
+    }
+
+    document.getElementById("settings-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target));
+      await fetch("/admin/settings", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+      });
+      alert("Settings updated!");
+    };
+
+    loadUsers();
+  </script>
+</body>
+</html>
