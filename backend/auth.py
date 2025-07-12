@@ -1,10 +1,10 @@
 from flask import Blueprint, request, jsonify
 import sqlite3
-import jwt, datetime, os
+import jwt, datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
 auth_bp = Blueprint("auth", __name__)
-SECRET_KEY = "luna_secret_key"  # Use env in production
+SECRET_KEY = "luna_secret_key"
 
 def get_db():
     return sqlite3.connect("database.db")
@@ -17,16 +17,15 @@ def signup():
     db.execute("INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
                (data["name"], data["email"], hashed))
     db.commit()
-    return jsonify({"msg": "Account created"})
+    return jsonify({"msg": "Account created successfully"})
 
 @auth_bp.route("/login", methods=["POST"])
 def login():
     data = request.json
     db = get_db()
-    cur = db.execute("SELECT * FROM users WHERE email = ?", (data["email"],))
-    user = cur.fetchone()
+    user = db.execute("SELECT * FROM users WHERE email = ?", (data["email"],)).fetchone()
     if user and check_password_hash(user[3], data["password"]):
         token = jwt.encode({"email": user[2], "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=24)},
                            SECRET_KEY, algorithm="HS256")
         return jsonify({"token": token})
-    return jsonify({"error": "Invalid login"}), 401
+    return jsonify({"error": "Invalid credentials"}), 401
