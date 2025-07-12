@@ -37,5 +37,17 @@ def create_tables():
         )
     """)
 
+    # Admin settings table
+c.execute("""
+    CREATE TABLE IF NOT EXISTS settings (
+        site_name TEXT DEFAULT 'Luna Ai',
+        theme TEXT DEFAULT 'Dark',
+        logo TEXT DEFAULT '/static/logo.png'
+    )
+""")
+
+# Optional: insert default row
+c.execute("INSERT INTO settings (site_name, theme, logo) VALUES ('Luna Ai', 'Dark', '/static/logo.png')")
+
     conn.commit()
     conn.close()
