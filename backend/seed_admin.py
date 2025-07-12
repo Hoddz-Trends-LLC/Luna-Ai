@@ -1,2 +1,1 @@
-cd backend
-touch seed_admin.py
+python seed_admin.py
