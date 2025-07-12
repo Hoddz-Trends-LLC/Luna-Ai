@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 chat_bp = Blueprint("chat", __name__)
-HF_TOKEN = os.getenv("HF_API_TOKEN")
+HF_TOKEN = os.getenv("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")
 MODEL_URL = "https://api-inference.huggingface.co/models/gpt2"
 
 @chat_bp.route("/generate", methods=["POST"])
