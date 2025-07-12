@@ -4,6 +4,9 @@ from chat import chat_bp
 from admin import admin_bp
 
 app = Flask(__name__)
+app.secret_key = "luna_secret_key"
+
+# Register blueprints
 app.register_blueprint(auth_bp)
 app.register_blueprint(chat_bp)
 app.register_blueprint(admin_bp)
