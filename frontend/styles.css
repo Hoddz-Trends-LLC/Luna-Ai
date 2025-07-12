@@ -1,29 +1,69 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: radial-gradient(ellipse at top, #222831 0%, #0f2027 100%);
-  color: #eeeeee;
   margin: 0;
-  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+  color: #eeeeee;
 }
-header {
+
+header, .auth-container {
   text-align: center;
   padding: 2rem;
 }
+
 .pricing {
   display: flex;
   justify-content: space-around;
+  padding: 2rem;
 }
+
 .plan {
-  background: #393e46;
-  padding: 1rem;
+  background: #1f2833;
+  padding: 1.5rem;
   border-radius: 10px;
+  width: 30%;
+  text-align: center;
 }
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-container input {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  width: 60%;
+}
+
+.auth-container button {
+  margin-top: 1rem;
+  padding: 0.5rem 2rem;
+}
+
+.chat-layout {
+  display: flex;
+  height: 100vh;
+}
+
 .sidebar {
-  width: 20%;
   background: #1c1c1c;
   padding: 1rem;
+  width: 20%;
+  overflow-y: auto;
 }
+
 .chat-panel {
-  width: 80%;
+  flex: 1;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-window {
+  flex: 1;
+  background: #141414;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  overflow-y: auto;
 }
