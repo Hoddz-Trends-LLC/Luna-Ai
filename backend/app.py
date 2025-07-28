@@ -11,5 +11,6 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(chat_bp)
 app.register_blueprint(admin_bp)
 
+# This block is only used for local development (not on Render)
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
