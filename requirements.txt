@@ -4,3 +4,4 @@ python-dotenv
 pyjwt
 werkzeug
 stripe
+uvicorn
