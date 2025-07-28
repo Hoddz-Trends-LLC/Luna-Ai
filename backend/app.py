@@ -13,3 +13,11 @@ app.register_blueprint(admin_bp)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
+from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return JSONResponse(content={"message": "Luna AI backend is running"})
